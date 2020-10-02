@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        html {
+            text-align: center;
+            font-family: Monaco;
+        }
+
+        .right {
+            float: right;
+        }
+
+        .left {
+            display: inline-block;
+        }
+
+        .square {
+            background-color: white;
+            border: 1px solid black;
+        }       
+
+        .color {
+            background-color: gray;
+            border: 1px solid black;
+        }
+
+        .gridContainer {
+            margin-top: 25px;
+            margin-right: 40px;
+            display: inline-grid;
+            grid-template-columns: repeat(16, 2fr);
+            grid-template-rows: repeat(16, 2fr);
+            border: 5px solid black;
+            border-radius: 5px;
+            height: 575px;
+            width: 575px;
+        }
+    </style>
+    <title>Etch-A-Sketch</title>
+  </head>
+  <body>
+    <div class="right">
+      <div class="gridContainer"></div>
+    </div>
+    <div class="page">
+      <h1>ETCH-A-SKETCH</h1>
+      <label for="quantity">Type A Value For Grid Size:</label>
+      <input type="number" id="quantity" name="quantity" />
+      <button class="reset">RESET</button>
+    </div>
+    <script>
+    
+    const grid = document.querySelector(".gridContainer");
+const userInput = document.getElementById("quantity");
+const resetButton = document.querySelector(".reset");
+
+createGrid = () => {
+  for (let i = 0; i < 256; i++) {
+    const div = document.createElement("div");
+    div.classList.add("square");
+    grid.appendChild(div);
+  }
+};
+
+updateGrid = () => {
+  grid.innerHTML = "";
+  grid.style.setProperty(
+    "grid-template-columns",
+    `repeat(${userInput.value}, 2fr)`
+  );
+  grid.style.setProperty(
+    "grid-template-rows",
+    `repeat(${userInput.value}, 2fr)`
+  );
+  for (let i = 0; i < userInput.value * userInput.value; i++) {
+    const div = document.createElement("div");
+    div.classList.add("square");
+    grid.appendChild(div);
+  }
+  console.log(userInput.value);
+};
+
+const square = document.querySelector("div");
+square.addEventListener("mouseover", function(event) {
+  event.target.classList.replace("square", "color");
+});
+
+userInput.addEventListener("change", updateGrid);
+
+resetButton.addEventListener("click", function() {
+  grid.innerHTML = "";
+  userInput.value = "";
+  grid.style.setProperty("grid-template-columns", `repeat(16, 2fr)`);
+  grid.style.setProperty("grid-template-rows", `repeat(16, 2fr)`);
+  createGrid();
+});
+
+createGrid();</script>
+  </body>
+</html>

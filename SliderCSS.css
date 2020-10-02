@@ -1,0 +1,34 @@
+h2 { 
+    font-family:helvetica, sans serif; 
+    color: black; 
+    margin:40px; 
+    text-align:center;
+}
+
+html {
+    text-align:center;
+}
+
+.gridContainer {
+    margin-top: 25px;
+    margin-right: 40px;
+    display: inline-grid;
+    grid-template-columns: repeat(4, 2fr);
+    grid-template-rows: repeat(4, 2fr);
+    border: 5px solid black;
+    border-radius: 5px;
+    height: auto;
+    width: auto;
+}
+
+.cell {
+    background-color: white;
+    border: 1px solid black;
+    text-align: center;
+    text-justify: 0.5fr;
+    height: 50px;
+    width: 50px;
+    font-size: 20px;
+    padding: 10px;
+}
+

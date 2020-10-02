@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <style>
+    :root {
+  --columns-row: 2;
+}
+
+ 
+ #container {
+      display: grid;
+      grid-template-columns: repeat(var(--columns-row), 1fr);
+      grid-template-rows: repeat(var(--columns-row), 1fr);
+      width: 500px;
+      height: 500px;
+  }
+
+  div {
+
+     border: 1px solid #000;
+  
+  }
+  </style>
+    <title>Etch-a-sketch</title>
+  </head>
+  <body>
+    <h1>Etch-a-sketch</h1>
+    <button id="start">Start</button>
+    <div id="container">
+    </div>
+
+    <script>
+    let btn = document.getElementById("start")
+  btn.addEventListener("click", createGrid)
+
+  function createGrid() {
+  var Container = document.getElementById("container");
+Container.innerHTML = '';
+  
+    let numberOfRows = prompt("How many rows do you want?");
+    let i = 0;
+    let x = numberOfRows * numberOfRows;
+    
+    document.documentElement.style.setProperty("--columns-row", numberOfRows);
+    for (i =  0; i < x ; i++) {
+      var div = document.createElement("div");
+      document.getElementById("container").appendChild(div);
+      div.addEventListener("mouseenter", function () {
+      this.style.backgroundColor = "red";
+    });
+  }
+}
+    </script>
+  </body>
+</html>
